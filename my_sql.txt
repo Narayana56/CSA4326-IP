@@ -1,0 +1,11 @@
+<?php
+$username = $_POST['username'];
+$email = $_POST['email'];
+$password = $_POST['password'];
+
+$conn = new mysqli('localhost', 'root', '', 'shop_db');
+$stmt = $conn->prepare("insert into shoplog(username, email, password) values (?, ?, ?)");
+$stmt->bind_param("sss", $username, $email, $password);
+$stmt->execute();
+$conn->close();
+?>
